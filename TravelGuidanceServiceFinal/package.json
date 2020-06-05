@@ -1,0 +1,31 @@
+{
+  "name": "travelguidanceservicefinal",
+  "version": "1.0.0",
+  "description": "Travel Guidance Service / it217128 / OOPII_217128",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C-Georgoulas/OOPII_217128_21606.git"
+  },
+  "author": "Charalampos Georgoulas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C-Georgoulas/OOPII_217128_21606/issues"
+  },
+  "homepage": "https://github.com/C-Georgoulas/OOPII_217128_21606#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "json-web-token": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-simple": "^0.5.6",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4"
+  }
+}

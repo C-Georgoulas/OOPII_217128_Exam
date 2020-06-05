@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Guidance Service</title>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+ 
+  <div class="ui fixed inverted menu">
+    <div class="ui container">
+        <div class="header item"><i class="paper plane outline icon"></i> Travel Guidance Service</div>
+        <a href="/admin" class="item">Home</a>
+       <form action="/administration">
+        <div class="ui simple dropdown item">
+          Administration
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <input class="item"  type="submit" name="choice" value="Travellers">Traveller
+            <input class="item" type="submit" name="choice" value="Tourists">Tourist
+            <input class="item"  type="submit" name="choice" value="Business">Business
+            
+          </div>
+        </div>
+          </div>
+       </form><!-- Here you should have a dropdown form,the name of the variable should be name as choice:Traveller,Tourist,Business-->
+        <a href="/freeticket" class="item">Free Ticket</a>
+        <a href="/countries" class="item">Stats</a>                                                       <!-- We must have an endpoint where the freeticket will take place.-->
+        <a href="/logout" class="item">Log out</a>
+    </div>
+</div>
+ 
+<script>$('.ui.dropdown')
+  .dropdown();</script>

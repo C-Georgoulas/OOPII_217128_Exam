@@ -1,0 +1,40 @@
+ 
+    <%- include("partials/headerloginsignup") %>
+    
+ 
+    <div class="ui main text container segment">
+        <div class="col-sm-6 col-sm-offset-3">
+        
+            <h1><span class="fa fa-sign-in"></span> Login</h1>
+       
+        
+            <!-- LOGIN FORM -->
+            <form class="ui form" action="/login" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <br>
+                
+                    
+                <input class="ui secondary button" type="submit" id="submit" value="Sign in"> 
+                
+            </form>
+            <div class="content">
+                <br>
+                <p><%= message %></p>
+            </div>
+            <hr>
+        
+            <p>Need an account? <a style="color:blue" href="/register">Signup</a></p>
+            <p>Need information><a style="color:blue" href="/info">Info</a>.</p>
+
+            </div>
+            </div>
+
+      <%- include("partials/footer") %>
+    

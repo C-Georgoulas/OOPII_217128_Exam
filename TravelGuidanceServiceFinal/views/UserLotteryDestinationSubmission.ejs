@@ -1,0 +1,120 @@
+<%- include("partials/header") %>
+ 
+<div class="ui main text container segment">
+    <h2 class="ui center aligned icon header">
+      <i class="ticket alternate icon"></i>
+    </h2>
+    <div class="five wide field">
+    </div>
+    <table id="table" class="ui compact celled definition table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Current City</th>
+            <th>Suggested Destination</th>
+            <th>Prefered Cities</th>
+          </tr>
+        </thead>
+        <tbody id="Table1">
+            <% for (var i = 0; i < data.length; i++) { %>
+                <td class="collapsing">
+                  <div class="ui checkbox">
+                    <input type="checkbox" name="type" value="<%= data[i].id %>" > <label></label>
+                  </div>
+                </td>
+                <td style="display:none;" ><%= data[i].id %></td>
+                <td><%= data[i].name%></td>
+                <td><%= data[i].age%></td>
+                <td><%= data[i].city%></td>
+                <td><%= data[i].visit%></td>
+                <td  ><%= data[i].preferedCities %></td>   <!--need it to be display none-->
+              <tr>
+              <% } %>
+            </tr>
+              </div>
+            </td>
+        </tbody>
+        <tfoot class="full-width">
+          <tr>
+            <th></th>
+            <th colspan="4">  
+                  <div class="five wide field">
+                  <label>Choose Option:</label>
+                <input id="currentCity" type="text" onkeyup="myFunction()" name="candidateCity" placeholder="E.g Athens,GR">
+                </div>
+                <button class="ui small button" id="winnerButton" onkeypress="function2()" > Submit Destination </button> <!--SOS θελω να καλω την frre ticket winner με το array των checked boxes και να μου στελνεις τη πολη-->
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+</div>
+ 
+<script>
+  $("#winnerButton").on('click', function() {
+      var newArray = new Array();
+    $("input:checkbox[name=type]:checked").each(function(){
+    newArray.push($(this).val());
+    });
+    var checked = jQuery('input:checkbox:checked').map(function () {
+    return this.value;
+   }).get();
+    fetch('http://localhost:5000/ticketsubmission',{ 
+       
+       method: "POST", 
+         
+       // Adding body or contents to send 
+       body:JSON.stringify({id:newArray[0]})
+               //this is a json array
+            
+       , 
+         
+       // Adding headers to the request 
+       headers: { 
+           "Content-type": "application/json; charset=UTF-8"
+       }
+     })
+     .then((response) => response.json() //αυτο το κομμάτι θέλει βελτίωση με !reponse.ok,ώστε να βγάζει status code και μήνυμα στο χρήστη
+     )
+    .then((data) => {
+     alert('Success:', data);  
+     }).catch((error) => {
+       alert('Error:', error.json);
+     });
+     
+  });
+ 
+ 
+</script>
+ 
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("currentCity");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("Table1");
+      tr = table.getElementsByTagName("tr");
+   
+      // Loop through all table rows, and hide those who don't match the search query
+   
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[6];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+ 
+ 
+ 
+
+     <%- include("partials/footer") %>

@@ -1,0 +1,37 @@
+<%- include("partials/headeradmin") %>
+<div class="ui main text container segment">
+ 
+<table class="ui compact celled definition table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Country</th>
+        <th>Times Visited</th>
+        <th>Times Lived</th>
+        <th>Cities</th>
+      </tr>
+    </thead>
+    <tbody id="Table1">
+        <% for (var i = 0; i < data.length; i++) { %>
+        <td class="collapsing">
+        </td>
+        <td style="display:none;"><%= data[i].id %></td>
+        <td><%= data[i].countryName%></td>
+        <td><%= data[i].timesvisited%></td>
+        <td><%= data[i].timeslived%></td>
+        <td><%= data[i].cities%></td>
+      </tr>
+      <% } %>
+    </tbody>
+    <tfoot class="full-width">
+      <tr>
+        <th></th>
+        <th colspan="4">
+          </div>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  </div>
+
+<%-  include("partials/footer") %>

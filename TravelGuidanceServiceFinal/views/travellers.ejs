@@ -1,0 +1,106 @@
+<%- include("partials/headeradmin") %>
+<div class="ui main text container segment">
+  <h2 id="typeoftraveller" class="ui center aligned icon header">
+    <i class="circular users icon"></i>
+    <div id="traveller">
+    <%= typeoftraveller %>    
+   </div>
+    </h2>
+   
+ 
+<table class="ui compact celled definition table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Current City</th>
+        <th>Suggested Destination</th>
+
+      </tr>
+    </thead>
+    <tbody id="Table1">
+        <% for (var i = 0; i < data.length; i++) { %>
+        <td class="collapsing">
+          <div class="ui checkbox">
+            <input type="checkbox" name="type" value="<%= data[i].id %>"> <label></label>
+          </div>
+        </td>
+        <td style="display:none;"><%= data[i].id %></td>
+        <td><%= data[i].username%></td>
+        <td><%= data[i].name%></td>
+        <td><%= data[i].age%></td>
+        <td><%= data[i].city%></td>
+        <td><%= data[i].visit%></td>
+      </tr>
+      <% } %>
+    </tbody>
+    <tfoot class="full-width">
+      <tr>
+        <th></th>
+        <th colspan="4">
+ 
+            <!-- <form action="/removeTravellers" method="POST">
+              <input type="hidden" name="typeoftraveller" value=<%= typeoftraveller %> />  <!-- θέλω τη βοηθεια σου εδώ για να πάρουμε τα checkboxed πεδία μέσω της jquery function και να περάσει στο form ένα json array με όνομα id  -->
+ 
+            <button class="ui small button" id="deletebutton" type="submit" > Remove Selected Items </button>
+            </form>
+          </div>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+  </div>
+  <script>
+    //good one :p jquery for noobs
+ 
+    $("#deletebutton").on('click', function() {
+      var newArray = new Array();
+      $("input:checkbox[name=type]:checked").each(function(){
+      newArray.push($(this).val());
+      //alert("done");
+});
+
+
+fetch('http://localhost:5000/removeTravellers',{ 
+       
+       method: "POST", 
+         
+       // Adding body or contents to send 
+       body:JSON.stringify( {
+               id:newArray,
+               typeoftraveller:"<%- typeoftraveller -%>"  //this is a json array
+            })
+       , 
+         
+       // Adding headers to the request 
+       headers: { 
+           "Content-type": "application/json; charset=UTF-8"
+       }
+     })
+     .then((response) => response.json() //αυτο το κομμάτι θέλει βελτίωση με !reponse.ok,ώστε να βγάζει status code και μήνυμα στο χρήστη
+     )
+    .then((data) => {
+     alert('Success:', data);  
+     }).catch((error) => {
+       alert('Error:', error.json);
+     });
+    
+ 
+ 
+  var checked = jQuery('input:checkbox:checked').map(function () {
+    return this.value;
+ 
+   }).get();
+    jQuery('input:checkbox:checked').parents("tr").remove();
+ 
+    });
+ 
+ 
+ 
+    //Δες εδώ πως θα μαζέψουμε όλα τα checkboxed rows για να καλεσουμέ το fetch για διαγραφή των αντικειμένων
+ 
+ </script>
+ 
+<%- include("partials/footer") %>

@@ -1,0 +1,85 @@
+<%- include("partials/header") %>
+
+<div class="ui main text container segment">
+  <div id="infoMessage">
+    <div class="ui info message">
+      <i class="close icon"></i>
+      <div class="header">
+        Was this what you wanted?
+      </div>
+      <ul class="list">
+        <li>Thank you for using our service.</li>
+        <li>We maintain and update our algorithm weekly to ensure best user experience.</li>
+      </ul>
+    </div>
+    </div>
+    <div class="ui header" id="res">Your suggested destination is <%= name %>    </div>
+    <!-- <img class="ui centered bordered image" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Copenhagen_Collage.jpg"> -->
+    <div class="content">
+        <br>
+        <p>Museums: <%= museums %></p>
+        <p>Cafe/Restaurants/Bars: <%=cafeBarResto%></p>
+    </div>
+</div>
+<div id="discountMessage">
+<div class="ui positive message">
+  <div class="header">
+    You are eligible for a discount on your trip if you book with us.
+  </div>
+  <p>Go to our <b><a href="/offers">special offers</a></b> page to see now.</p>
+</div>
+</div>
+<p></p>
+<div class="ui container">
+    <div class="ui steps">
+    <div class="active step">
+    <i class="id card icon"></i>
+    <div class="content">
+      <div class="title">Information</div>
+      <div class="description">Fill in the personal information required.</div>
+    </div>
+    </div>
+    <div class="active step">
+    <i class="globe icon"></i>
+    <div class="content">
+      <div class="title">Destination & Category selection</div>
+      <div class="description">Enter prefered destinations & preferences</div>
+    </div>
+    </div>
+    <div class="active step">
+    <i class="plane icon"></i>
+    <div class="content">
+      <div class="title">Receive suggested destination</div>
+    </div>
+    </div>
+    </div>
+    </div>
+<div class="white">
+    <div class="gooey">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+        <p>FETCHING DATA</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script>$(window).on("load",function(){
+    $(".white").fadeOut(7500);
+});</script> -->
+
+<script>
+  setTimeout(function(){
+    $(".white").fadeToggle();
+  }, 1500);
+</script>
+
+<script>
+  $(".close").on("click", function(){
+    $("#infoMessage").fadeOut("slow");
+  });
+</script>
+
+<%- include("partials/footer") %>

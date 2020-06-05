@@ -1,0 +1,59 @@
+<%- include("partials/headeradmin") %>
+ 
+<div class="ui main text container segment">
+    <h2 class="ui center aligned icon header">
+      <i class="id card outline icon"></i>
+    </h2>
+    <table class="ui compact celled definition table">
+        <thead>
+          <tr>
+            <th></th>
+            <!-- <th>Database ID</th> -->
+            <th>Winner Name</th>
+            <th>Age</th>
+            <th>Current City</th>
+            <th>Suggested Destination</th>
+          </tr>
+        </thead>
+        <tbody id="Table1">
+            <td class="collapsing">
+              <div class="ui checkbox">
+              </div>
+              <td style="display:none;"><%= data.id %></td>
+                 <td><%= data.name%></td>
+                <td><%= data.age%></td>
+                <td><%= data.city%></td>
+                <td><%= data.visit%></td>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="full-width">
+          <tr>
+            <th></th>
+            <th colspan="4">  
+                <a class="ui small button"href="/freeticket">Back</a>
+              </div>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+</div>
+ 
+<div class="white">
+    <div class="gooey">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+ 
+  <script>
+    setTimeout(function(){
+      $(".white").fadeToggle();
+    }, 1000);
+  </script>
+ 
+<%- include("partials/footer") %>

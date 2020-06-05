@@ -1,0 +1,57 @@
+<%- include("partials/headerloginsignup") %>
+    
+ 
+<div class="ui main text container segment">
+    <div class="col-sm-6 col-sm-offset-3">
+    
+        <h1><span class="fa fa-sign-in"></span> Registration</h1>
+   
+    
+        <!-- LOGIN FORM -->
+        <form class="ui form" action="/registered" method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+            <div class="form-group">
+                <label>Password Confirmation</label>
+                <input type="password" class="form-control" name="passwordconf">
+            </div>
+            <div class="form-group">
+                <label>Whole Name</label>
+                <input type="text" class="form-control" name="wholename">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email">
+            </div>
+
+            <br>
+            
+                
+            <input class="ui secondary button" type="submit" id="submit" value="Sign up"> 
+            
+        </form>
+        <div class="content">
+            <br>
+            <p><%= message.registrymessage%></p>
+        </div>
+        <hr>
+    
+        <p>Have an account? <a style="color:blue" href="/"> Login</a></p>
+        <p>Need information><a style="color:blue" href="/info">Info</a></p>
+
+        </div>
+        </div>
+         <script>$('#password, #passwordconf').on('keyup', function () {
+            if ($('#password').val() == $('#passwordconf').val()) {
+              $('#message').html('Matching').css('color', 'green');
+            } else 
+              $('#message').html('Passwords have to match!').css('color', 'red');
+          });</script>
+
+  <%- include("partials/footer") %>

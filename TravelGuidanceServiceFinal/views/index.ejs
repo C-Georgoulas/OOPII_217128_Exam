@@ -1,0 +1,181 @@
+<%- include("partials/header") %>
+<div class="ui main text container segment">
+
+<form class="ui form" action="/results" method="GET">
+    <div class="test">
+<div class="required inline fields">
+<label>Which kind of class/category do you fall under?</label>
+<div class="field">
+  <div class="ui radio checkbox">
+    <input class="in" type="radio" name="category" value="Traveller">
+    <label>Travellers</label>
+  </div>
+</div>
+<div class="field">
+  <div class="ui radio checkbox">
+    <input class="in" type="radio" name="category" value="Tourist">
+    <label>Tourist</label>
+  </div>
+</div>
+<div class="field">
+  <div class="ui radio checkbox">
+    <input id="target" type="radio" name="category" value="Business">
+    <label>Business</label>
+  </div>
+</div>
+</div>
+<div class="ui container">
+    <div class="five wide field">
+      <label>Name</label>
+      <input type="text" name="name" placeholder="Name..." required>
+    </div>
+     <div class="five wide field">
+      <label>Age</label>
+      <input type="number" name="age" placeholder="Age..." required>
+    </div>
+    <div class="five wide field">
+        <label>Which city do you currently reside?</label>
+        <input type="text" name="currentCity" placeholder="E.g Athens,GR" required>
+      </div>
+      <label><strong>Choose your prefered destinations</label>
+      <select name="preferedCities" multiple="" class="ui dropdown" required>
+      <option value="Athens,GR">Athens, Greece</option>
+      <option value="Aarhus,DK">Aarhus, Denmark</option>
+      <option value="Berlin,DE">Berlin, Germany</option>
+      <option value="Copenhagen,DK">Copenhagen, Denmark</option>
+      <option value="Vienna,AT">Vienna, Austria</option>
+      <option value="Minsk,BY">Minsk, Belarus</option>
+      <option value="Brussels,BE">Brussels, Belgium</option>
+      <option value="Sofia,BG">Sofia, Bulgaria</option>
+      <option value="Prague,CZ">Prague, Czech Republic</option>
+      <option value="Tallinn, EE">Tallinn, Estonia</option>
+      <option value="Helsinki,FI">Helsinki, Finland</option>
+      <option value="Gibraltar, GI">Gibraltar, Gibraltar</option>
+      <option value="Budapest,HU">Budapest, Hungary</option>
+      <option value="Reykjavík,IS">Reykjavík, Iceland</option>
+      <option value="Dublin, IE">Dublin, Ireland</option>
+      <option value="Rome, IT">Rome, Italy</option>
+      </select>
+  </div>
+  <div class="book">
+  <div class="ui container">
+    <div class="inline fields">
+        <label>Choose your level of interest within museums:</label>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="museums" value="notinterested">
+            <label>Not interested</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="museums" value="interested">
+            <label>Interested</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="museums" value="veryinterested">
+            <label>Very interested</label>
+          </div>
+        </div>
+        </div>
+        <div class="inline fields">
+            <label>Choose your level of interest within Cafe/Bar/Restaurants:</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="cafeBarResto" value="notinterested">
+                <label>Not interested</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="cafeBarResto" value="interested">
+                <label>Interested</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="cafeBarResto" value="veryinterested">
+                <label>Very interested</label>
+              </div>
+            </div>
+            </div>
+            <div class="inline fields">
+              <label>Do you wish to avoid destinations with rain?</label>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="rainChoice" value="notinterested">
+                  <label>No</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="rainChoice" value="interested">
+                  <label>Yes</label>
+                </div>
+              </div>
+
+                  </div>
+
+
+  </div>
+  </div>
+  <p></p>
+  <input class="ui secondary button" type="submit" id="submit"> 
+</form>
+</div>
+</div>
+
+<div class="ui container">
+<div class="ui steps">
+<div class="active step">
+<i class="id card icon"></i>
+<div class="content">
+  <div class="title">Information</div>
+  <div class="description">Fill in the personal information required.</div>
+</div>
+</div>
+<div class="active step">
+<i class="globe icon"></i>
+<div class="content">
+  <div class="title">Destination & Category selection</div>
+  <div class="description">Enter prefered destinations & preferences</div>
+</div>
+</div>
+<div class="disabled step">
+<i class="plane icon"></i>
+<div class="content">
+  <div class="title">Receive suggested destination</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="loader-wrapper">
+        <span class="loaderth"><span class="loader-inner"></span></span>
+    </div>
+    
+    <script>$(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });</script>
+
+
+
+<script>
+$( "#target" ).click(function() {
+  $(".book").fadeOut( "slow", function() {
+    // Animation complete.
+  });
+});
+
+$(".in").click(function(){
+  $(".book").fadeIn( "slow", function() {
+    // Animation complete.
+  });
+});
+
+</script>
+
+<%- include("partials/footer") %>
