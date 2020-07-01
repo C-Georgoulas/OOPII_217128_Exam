@@ -1,0 +1,19 @@
+<%- include("partials/headeradmin") %>
+<div class="ui main text container segment">
+    
+    <form class="ui form"  action="/PostManage" method="POST">
+        <div class="five wide field">
+            <label>File One</label>
+            <input type="text" name="file1" placeholder="file1.txt" required>
+          </div>
+          <div class="five wide field">
+            <label>File Two</label>
+            <input type="text" name="file2" placeholder="file2.txt" required>
+          </div>
+    <button class="ui basic button">
+        <i class="icon file"></i>
+        Submit files
+      </button>
+    </form>
+</div>
+<%- include("partials/footer") %>

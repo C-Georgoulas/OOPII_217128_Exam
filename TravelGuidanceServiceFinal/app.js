@@ -109,7 +109,47 @@ app.post("/login",function(req,res){   //new endpoint  an implementation needed
       });
 });
 
+app.get("/fileManage", middleware  ,function(req, res){
+  res.render("filemanagement");
+});
+app.post("/PostManage",middleware  ,function(req, res){
+  var file1 = req.body.file1;
+  var file2 = req.body.file2;
+  fetch('http://localhost:8080/web/api/Files',{
+       
+    method: "POST",
 
+    // Adding body or contents to send
+    body: JSON.stringify(
+        [file1, file2]
+      ),
+     
+    // Adding headers to the request
+    headers: {
+      'Authorization': 'Bearer '+req.cookies['accesstoken'],
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  .then(response => {
+    response.json()
+      .then(responseJson => {
+
+       
+       
+        // set localStorage with your preferred name,..
+        // ..say 'my_token', and the value sent by server
+        
+        
+        // you may also want to redirect after you have saved localStorage:
+        // window.location.assign("http://www.example.org")
+      })
+  })
+  .then((data) => {
+  console.log(data);
+  }).catch((error) => {
+    console.error('Error:', error);
+  });
+});
 app.get("/logout",middleware  ,function(req,res){
   fetch('http://localhost:8080/web/auth/logout',{
   method: "POST",

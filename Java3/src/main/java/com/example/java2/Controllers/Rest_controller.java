@@ -5,8 +5,12 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Handler.LocationsHandler;
 import com.example.Handler.TravellerRecordsJson;
+import com.example.java2.Entities.BasicSetOperations;
 import com.example.java2.Entities.Business;
 import com.example.java2.Entities.City;
 import com.example.java2.Entities.Country;
@@ -49,6 +54,11 @@ import com.example.java2.Repositories.UserRepository;
 import com.example.java2.RetrieveData.OpenData;
 import com.example.java2.security.JwtUtils;
 import com.example.java2.security.WebSecurityConfig;
+
+import fiileExams.ClassWritetoFile;
+
+import com.example.java2.fileExams.*;
+import io.jsonwebtoken.lang.Arrays;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 
@@ -143,6 +153,7 @@ public class Rest_controller {
 		userrepo.save(currentuser);
 		return visitCity;
 	}
+	
 
 	@PreAuthorize("hasRole('USER')")
 	@RequestMapping(value = "/SaveTravellerBasedOnWeather", method = RequestMethod.POST, produces = {
@@ -795,6 +806,18 @@ public class Rest_controller {
 			"application/xml" })
 	public List<Tourist> AllTourist() {
 		return tour.findAll();
+	}
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(value = "/Files", method = RequestMethod.POST, produces = { "application/json",
+	"application/xml" })
+	public String fillfromDb(@RequestBody List<String> filenames) throws IOException {
+		System.out.println("edwwwwww"+filenames.toString());
+		List<City> citiesfromdb=cr.findAll();
+		String response=ClassWritetoFile.InsertFromDb(citiesfromdb,filenames);
+		BasicSetOperations basicop=new BasicSetOperations();
+		basicop.Handle();
+		
+		return response;
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
